@@ -1,0 +1,36 @@
+{
+  "name": "ag-kit-winter-box",
+  "version": "1.1.0",
+  "description": "Complete AI agent toolkit for Antigravity IDE — 50 skills, 23 agents, 5 rules, 11 workflows. Original ag-kit + 12 global skills.",
+  "main": "bin/cli.js",
+  "bin": {
+    "ag-kit-winter-box": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    ".agent/",
+    "README.md",
+    "setup.sh"
+  ],
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "antigravity",
+    "ai-agent",
+    "skills",
+    "coding-assistant",
+    "developer-tools",
+    "ag-kit",
+    "winter-box"
+  ],
+  "author": "vonod",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vonod/ag-kit"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
