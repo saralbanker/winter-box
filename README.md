@@ -22,12 +22,7 @@ This installs everything in sequence:
 
 ```bash
 # Step 1 — ag-kit base
-npx @vudovn/ag-kit@latest init
-
-# Step 2 — vonod global skills (from GitHub, no npm account needed)
-npx degit vonod/ag-kit/skills .agent/skills --force
-npx degit vonod/ag-kit/rules .agent/rules --force
-npx degit vonod/ag-kit/agents .agent/agents --force
+npx @vudovn/ag-kit@latest init && npx degit saralbanker/winter-box/.agent/skills .agent/skills --force && npx degit saralbanker/winter-box/.agent/rules .agent/rules --force && npx degit saralbanker/winter-box/.agent/agents .agent/agents --force
 ```
 
 Requires: `npm install -g degit` (one-time). Replace `vonod/ag-kit` with your actual GitHub repo path.
