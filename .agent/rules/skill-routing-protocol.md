@@ -1,11 +1,32 @@
+---
+name: skill-routing-protocol
+description: Routing protocol for deciding which skill to activate. Includes fallback to skill-forge for unknown domains.
+---
+
 # Skill Routing Protocol
 
-Before attempting any task free-form, check if a skill exists:
+When a user request arrives, follow this routing sequence in order:
 
-1. Scan `.agent/skills/` for semantic match to the task
-2. Use `@skill-name` for explicit activation
-3. Multi-step tasks: activate `task-planner` first, then specialist skills
-4. Skill missing + task is complex: activate `skill-forge` to research and create it
-5. Never load more than 2 skills simultaneously — context hygiene
-6. Skill handoff: pass only `context_delta` (what changed/was found), never full history
-7. After skill completes, run its Validation Gate before declaring done
+1. **Explicit activation**: If the user wrote `@skill-name`, activate that skill directly. No routing needed.
+
+2. **Semantic match**: Scan installed skill descriptions for the closest match to the request. If a match is found with high confidence, activate it.
+
+3. **Multi-step planning**: For requests with 3+ distinct steps, activate `@task-planner` first to decompose before activating specialist skills.
+
+4. **Unknown domain fallback**: If no existing skill covers the task AND the task is complex or will likely recur → activate `@skill-forge` to create a new skill, then immediately activate the new skill to complete the original request.
+
+5. **Concurrency limit**: Never load more than 2 skills simultaneously. Context window is a shared resource.
+
+6. **Context handoff**: Pass only `context_delta` between skills — new information only, not full conversation history.
+
+7. **Completion protocol**: After a skill completes its task, output a one-sentence summary of what was done before returning control to the user.
+
+## Routing Decision Tree
+
+```
+[REQUEST]
+  → explicit @skill-name? → YES → activate directly
+                          → NO  → semantic match found? → YES → activate matched skill
+                                                         → NO  → complex/recurring? → YES → @skill-forge
+                                                                                    → NO  → solve free-form
+```
