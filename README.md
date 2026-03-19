@@ -1,6 +1,6 @@
 # @vonod/ag-kit — Winter Box 🧊
 
-> Lyra-class skill library for [Antigravity IDE](https://antigravity.dev) — 12 global skills, 4 rules, 3 specialist agents that work on any project, any stack, any model.
+> Lyra-class skill library for [Antigravity IDE](https://antigravity.dev) — 13 global skills, 4 rules, 3 specialist agents that work on any project, any stack, any model.
 
 Built on top of [@vudovn/ag-kit](https://www.npmjs.com/package/@vudovn/ag-kit).
 
@@ -16,7 +16,7 @@ npx @vonod/ag-kit setup
 
 This installs everything in sequence:
 1. `@vudovn/ag-kit` base (20 agents, 36 skills, 11 workflows — ag-kit official)
-2. `@vonod/ag-kit` global skills (12 skills, 4 rules, 3 agents — winter-box)
+2. `@vonod/ag-kit` global skills (13 skills, 4 rules, 3 agents — winter-box)
 
 ### Option B — Manual two-step (use this before npm publish)
 
@@ -47,6 +47,48 @@ npx @vonod/ag-kit list
 
 ---
 
+### ⚡ One-Shot Install (AG-Kit + Winter-Box)
+
+Install the Antigravity CLI and all Winter-Box global skills, rules, and agents
+in a single command:
+
+```bash
+npx @vudovn/ag-kit@latest init && npx degit saralbanker/winter-box/.agent/skills .agent/skills --force && npx degit saralbanker/winter-box/.agent/rules .agent/rules --force && npx degit saralbanker/winter-box/.agent/agents .agent/agents --force
+```
+
+This installs:
+- AG-Kit CLI and project scaffolding
+- 13 global skills (task-planner, debugging-master, code-synthesizer, + 10 more)
+- 4 global rules (engineering standards, skill routing, output quality, token hygiene)
+- 3 global agents (senior-engineer, system-investigator, quality-enforcer)
+
+---
+
+### 🔨 Install skill-forge Only
+
+To download only the skill-forge meta-skill (without the full Winter-Box suite):
+
+```bash
+npx degit saralbanker/winter-box/.agent/skills/skill-forge .agent/skills/skill-forge --force
+```
+
+This gives you the ability to create new SKILL.md files on demand using `@skill-forge`.
+
+---
+
+### 🔄 Update Skill Routing Rule
+
+To update the skill routing protocol rule (adds `@skill-forge` as automatic fallback):
+
+```bash
+npx degit saralbanker/winter-box/.agent/rules/skill-routing-protocol.md .agent/rules/ --force
+```
+
+Run this if your existing `skill-routing-protocol.md` does not automatically invoke
+`@skill-forge` for unknown domains.
+
+---
+
 ### One-time npm publish (to enable Option A)
 
 ```bash
@@ -59,7 +101,7 @@ Takes 2 minutes. After this, `npx @vonod/ag-kit setup` works anywhere, on any ma
 
 ---
 
-## 🌍 Global Skills (v1.1.0) — Work in Any Project
+## 🌍 Global Skills (v1.2.0) — Work in Any Project
 
 | Skill | Purpose |
 |-------|---------|
@@ -75,6 +117,7 @@ Takes 2 minutes. After this, `npx @vonod/ag-kit setup` works anywhere, on any ma
 | `research-engine` | Evidence-based research with source hierarchy and synthesis |
 | `dependency-analyzer` | SemVer, CVE, license compliance, transitive risk |
 | `documentation-writer` | Audience-first docs: READMEs, API refs, architecture docs |
+| `skill-forge` | Meta-skill: creates new SKILL.md capability modules on demand |
 
 ---
 
@@ -104,7 +147,7 @@ Takes 2 minutes. After this, `npx @vonod/ag-kit setup` works anywhere, on any ma
 ```
 .agent/
 ├── rules/              # 4 global rules (always-on guardrails)
-├── skills/             # 12 global skills (domain knowledge)
+├── skills/             # 13 global skills (domain knowledge)
 │   ├── task-planner/
 │   ├── debugging-master/
 │   ├── code-synthesizer/
@@ -116,7 +159,8 @@ Takes 2 minutes. After this, `npx @vonod/ag-kit setup` works anywhere, on any ma
 │   ├── refactoring-specialist/
 │   ├── research-engine/
 │   ├── dependency-analyzer/
-│   └── documentation-writer/
+│   ├── documentation-writer/
+│   └── skill-forge/
 └── agents/             # 3 specialist agents
     ├── senior-engineer.md
     ├── system-investigator.md
